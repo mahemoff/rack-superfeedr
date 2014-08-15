@@ -3,7 +3,6 @@ require 'net/http'
 require 'uri'
 require 'json'
 require 'nokogiri'
-require 'byebug'
 
 
 module Rack
