@@ -225,6 +225,8 @@ module Rack
       end
       request.set_form_data (opts[:params]||{})
       (opts[:headers]||{}).each_pair { |key, val| request[key.to_s.downcase] = val }
+      puts "Posting to Superfeedr at #{uri}\n#{request.inspect}"
+      http.set_debug_output($stdout)
       http.request(request)
     end
 
@@ -233,6 +235,8 @@ module Rack
       url = URI::HTTP.build({:scheme => scheme, :host => @params[:host], :path => "#{@base_path}#{feed_id}", :port => @params[:port] }).to_s
       # for some reason, URI::HTTP ignores scheme and always sets it to http, so let's manually change it
       url.gsub /^.*?:\/\//, "#{scheme}://"
+      puts "Made URL #{url}"
+      url
     end
 
   end
